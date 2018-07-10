@@ -18,7 +18,7 @@ void left_pulse_interrupt() {
 void right_pulse_interrupt() {
     right_count++;
 }
-checkCounter() is a method to readjust the motors speed to make the counters the same (hopefully).
+// checkCounter() is a method to readjust the motors speed to make the counters the same (hopefully).
 void checkCounter() {
     if(left_count > right_count) {
         LeftSpeed = 0;
