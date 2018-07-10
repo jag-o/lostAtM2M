@@ -6,11 +6,11 @@ const int BackwardsLeft = 7;
 const int EnableRight = 10;
 const int ForwardsRight = 12;
 const int BackwardsRight = 11;
-int LeftSpeed = 200;
+int LeftSpeed = 180;
 int RightSpeed = 200;
 // These counters are used for the amount of times the feedback from the motors come through.
-volatile unsigned int left_count = 0;
-volatile unsigned int right_count = 0;
+volatile int left_count = 0;
+volatile int right_count = 0;
 // These methods are used for increasing the counters if the interrupt is hit.
 void left_pulse_interrupt() {
     left_count++;
@@ -18,22 +18,20 @@ void left_pulse_interrupt() {
 void right_pulse_interrupt() {
     right_count++;
 }
-// checkCounter() is a method to readjust the motors speed to make the counters the same (hopefully).
+checkCounter() is a method to readjust the motors speed to make the counters the same (hopefully).
 void checkCounter() {
-    if(left_count - right_count < 0) {
-        RightSpeed = (RightSpeed - 5);
-        LeftSpeed = (LeftSpeed + 5);
-        Serial.write("Right motor adjusted");
+    if(left_count > right_count) {
+        LeftSpeed = 0;
     }
-    else if(left_count - right_count > 0) {
-        LeftSpeed = (LeftSpeed - 5);
-        RightSpeed = (RightSpeed + 5);
-        Serial.write("Left motor adjusted");
-    } else {
-    Serial.write("Verified the counter!");
+    else if(right_count > left_count) {
+        RightSpeed = 0;
     }
-    
+    else() {
+        LeftSpeed = 200;
+        RightSpeed = 200;
+    }
 }
+   
 void moveTheRover() {
     // Move the GODDAMN ROVER
     analogWrite(ForwardsLeft, LeftSpeed);
