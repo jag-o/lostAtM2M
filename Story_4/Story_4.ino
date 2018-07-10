@@ -11,7 +11,7 @@ void setup() {
   pinMode(enable1, OUTPUT); // Red led represents the robot turning on.
   pinMode(backwards1, OUTPUT); // Yellow led represents the robot moving backwards.
   pinMode(forward2, OUTPUT); // Blue led represents the robot moving forwards.
-  pinMode(enable2, OUTPUT); // Red led represents the robot turning on.
+  pinMode(enable2, OUTPUT); // Red led` represents the robot turning on.
   pinMode(backwards2, OUTPUT); // Yellow led represents the robot moving backwards.
 }
 
