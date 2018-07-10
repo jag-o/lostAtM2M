@@ -21,15 +21,18 @@ void right_pulse_interrupt() {
 // checkCounter() is a method to readjust the motors speed to make the counters the same (hopefully).
 void checkCounter() {
     if(left_count - right_count < 0) {
-        RightSpeed = (RightSpeed - 10);
+        RightSpeed = (RightSpeed - 5);
+        LeftSpeed = (LeftSpeed + 5);
         Serial.write("Right motor adjusted");
     }
     else if(left_count - right_count > 0) {
-        LeftSpeed = (LeftSpeed - 10);
+        LeftSpeed = (LeftSpeed - 5);
+        RightSpeed = (RightSpeed + 5);
         Serial.write("Left motor adjusted");
     } else {
     Serial.write("Verified the counter!");
     }
+    
 }
 void moveTheRover() {
     // Move the GODDAMN ROVER
