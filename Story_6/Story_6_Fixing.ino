@@ -1,4 +1,3 @@
-// Initialize variables for pins and speed.
 const int left_feedback_pin = 2;
 const int right_feedback_pin = 3;
 const int EnableLeft = 9;
