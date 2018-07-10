@@ -1,0 +1,3 @@
+counters should be volatile
+store in an int
+pinmode(INPUT_PULLUP);
