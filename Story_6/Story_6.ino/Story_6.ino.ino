@@ -6,8 +6,8 @@ const int BackwardsLeft = 7;
 const int EnableRight = 10;
 const int ForwardsRight = 12;
 const int BackwardsRight = 11;
-int LeftSpeed = 130;
-int RightSpeed = 255;
+int LeftSpeed = 200;
+int RightSpeed = 200;
 // These counters are used for the amount of times the feedback from the motors come through.
 volatile unsigned int left_count = 0;
 volatile unsigned int right_count = 0;
