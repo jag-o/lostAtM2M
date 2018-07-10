@@ -7,8 +7,8 @@ const int enable2 = 10;
 const int forward2 = 12;
 const int backwards2 = 11;
 
-volatile unsigned int left_count =0;
-volatile unsigned int right_count =0;
+volatile unsigned int left_count = 0;
+volatile unsigned int right_count = 0;
 
 
 void left_pulse_interrupt()
@@ -34,16 +34,26 @@ void setup() {
   pinMode(right_feedback_pin, INPUT_PULLUP);
   attachInterrupt(digitalPinToInterrupt(right_feedback_pin), right_pulse_interrupt, RISING);
   Serial.begin(115200);
-
-  lightmeup();
+  Serial.println("This is a test line");
 }
   // put your setup code here, to run once:
 
 
 void loop() {
   delay(300);
-  Serial.println("left_count: "+left_count);
-  Serial.println("right_count: "+right_count);
+  analogWrite(forward1, 130);
+  analogWrite(forward2, 255);
+  digitalWrite(enable1, HIGH);
+  digitalWrite(enable2, HIGH);
+  analogWrite(forward1, 0);
+  analogWrite(forward2, 0);
+  digitalWrite(enable1, LOW);
+  digitalWrite(enable2, LOW);
+  
+  Serial.println("Left motor:");
+  Serial.println(left_count);
+  Serial.println("Right motor:");
+  Serial.println(right_count);
 }
 
 void lightmeup() {
