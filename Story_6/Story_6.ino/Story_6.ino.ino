@@ -6,44 +6,46 @@ const int BackwardsLeft = 7;
 const int EnableRight = 10;
 const int ForwardsRight = 12;
 const int BackwardsRight = 11;
-int LeftSpeed = 180;
-int RightSpeed = 200;
+int LeftSpeed = 150;
+int RightSpeed = 150;
+
 // These counters are used for the amount of times the feedback from the motors come through.
-volatile int left_count = 0;
-volatile int right_count = 0;
+volatile unsigned int left_count = 0;
+volatile unsigned int right_count = 0;
 // These methods are used for increasing the counters if the interrupt is hit.
-void left_pulse_interrupt() {
+void left_pulse_interrupt()
+{
     left_count++;
 }
-void right_pulse_interrupt() {
+void right_pulse_interrupt()
+{
     right_count++;
 }
 // checkCounter() is a method to readjust the motors speed to make the counters the same (hopefully).
-void checkCounter() {
-    if(left_count > right_count) {
-        LeftSpeed = 0;
-    }
-    else if(right_count > left_count) {
-        RightSpeed = 0;
-    }
-    else {
-        LeftSpeed = 180;
-        RightSpeed = 200;
-    }
-}
-   
-void moveTheRover() {
-    // Move the GODDAMN ROVER
-    analogWrite(ForwardsLeft, LeftSpeed);
-    analogWrite(ForwardsRight, RightSpeed);
+void checkCounter() 
+{
+  if(left_count > right_count)
+  {
+    digitalWrite(EnableLeft, LOW);
+    delay(230);
     digitalWrite(EnableLeft, HIGH);
+  }
+  else if(right_count > left_count)
+  {
+    digitalWrite(EnableRight, LOW);
+    delay(230);
     digitalWrite(EnableRight, HIGH);
-    delay(500);
-    checkCounter();
-    delay(500);
+  }
+  else 
+  {
+    LeftSpeed = 150;
+    RightSpeed = 140;
+  }
 }
+
 // setup() initializes the pins needed, and also attaches an interrupt.
-void setup() {
+void setup()
+{
     pinMode(left_feedback_pin, INPUT_PULLUP);
     pinMode(right_feedback_pin, INPUT_PULLUP);
     pinMode(ForwardsLeft, OUTPUT);
@@ -52,11 +54,28 @@ void setup() {
     pinMode(ForwardsRight, OUTPUT); 
     pinMode(BackwardsRight, OUTPUT); 
     pinMode(EnableRight, OUTPUT);
+    digitalWrite(EnableLeft, HIGH);
+    digitalWrite(EnableRight, HIGH);
     attachInterrupt(digitalPinToInterrupt(left_feedback_pin), left_pulse_interrupt, RISING);
     attachInterrupt(digitalPinToInterrupt(right_feedback_pin), right_pulse_interrupt, RISING);
     Serial.begin(115200);
 }
 // loop() is where we'll be using the above code to check these counters and make sure it progresses in a line.
-void loop() {
-    moveTheRover();
+void loop() 
+{
+  int rovertime = millis();
+  if(rovertime < 8000)
+  {
+    analogWrite(ForwardsLeft, LeftSpeed);
+    analogWrite(ForwardsRight, RightSpeed);
+    delay(800);
+    checkCounter();
+    delay(800);
+    digitalWrite(ForwardsLeft, LOW);
+    digitalWrite(EnableLeft, HIGH);
+    digitalWrite(ForwardsRight, LOW);
+    digitalWrite(EnableRight, HIGH);
+    digitalWrite(BackwardsLeft, LOW);
+    digitalWrite(BackwardsRight, LOW);
+  }
 }
