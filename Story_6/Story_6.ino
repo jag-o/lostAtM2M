@@ -19,10 +19,12 @@ void left_pulse_interrupt()
 {
   left_count++;
 }
+
 void right_pulse_interrupt()
 {
   right_count++;
 }
+
 // checkCounter() is a method to readjust the motors speed to make the counters the same (hopefully).
 void checkCounter() 
 {
@@ -64,6 +66,7 @@ void setup()
   attachInterrupt(digitalPinToInterrupt(left_feedback_pin), left_pulse_interrupt, RISING);
   attachInterrupt(digitalPinToInterrupt(right_feedback_pin), right_pulse_interrupt, RISING);
 }
+
 // loop() is where we'll be using the above code to check these counters and make sure it progresses in a line.
 void loop() 
 {
