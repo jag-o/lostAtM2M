@@ -27,7 +27,7 @@ void checkCounter() {
         RightSpeed = 0;
     }
     else() {
-        LeftSpeed = 200;
+        LeftSpeed = 180;
         RightSpeed = 200;
     }
 }
