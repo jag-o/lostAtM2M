@@ -11,7 +11,7 @@ void setup() {
     pinMode(ForwardsRight, OUTPUT); 
     pinMode(BackwardsRight, OUTPUT); 
     pinMode(EnableRight, OUTPUT);
-    fourTimes();
+    figureOfEight();
 }
 
 void moveForwards(){
@@ -33,7 +33,19 @@ void moveForwardsMore(){
   digitalWrite(EnableRight, HIGH);
   digitalWrite(BackwardsLeft, LOW);
   digitalWrite(BackwardsRight, LOW);
-  delay(1450);
+  delay(1300);
+  
+}
+
+void moveForwardsMoreMore(){
+  //MOVES THE ROVER FORAWRDS
+  digitalWrite(ForwardsLeft, HIGH);
+  digitalWrite(ForwardsRight, HIGH);
+  digitalWrite(EnableLeft, HIGH);
+  digitalWrite(EnableRight, HIGH);
+  digitalWrite(BackwardsLeft, LOW);
+  digitalWrite(BackwardsRight, LOW);
+  delay(1650);
   
 }
 void halt(){ 
@@ -47,7 +59,6 @@ void halt(){
   delay(1500);
   }
 
-
 void turn90Degrees(){
   //TURNS THE ROVER 90 DEGREES ANTICLOCKWISE
   digitalWrite(ForwardsLeft, LOW);
@@ -56,10 +67,8 @@ void turn90Degrees(){
   digitalWrite(EnableRight, HIGH);
   digitalWrite(BackwardsLeft, HIGH);
   digitalWrite(BackwardsRight, LOW);
-  delay(540);
+  delay(530);
 }
-
-
 
 void turn90DegreesMore(){
   //TURNS THE ROVER MORE THAN 90 DEGREES ANTICLOCKWISE 
@@ -69,9 +78,29 @@ void turn90DegreesMore(){
   digitalWrite(EnableRight, HIGH);
   digitalWrite(BackwardsLeft, HIGH);
   digitalWrite(BackwardsRight, LOW);
-  delay(570);
+  delay(560);
 }
-void fourTimes(){
+
+void halfAFigureOfEight(){
+  halt();
+  moveForwards();
+  halt();
+  turn90Degrees();
+  halt();
+  moveForwards();
+  halt();
+  turn90Degrees(); 
+  halt();
+  moveForwards();
+  halt();
+  turn90DegreesMore();
+  halt();
+  moveForwardsMore();
+  halt();
+}
+
+void halfAFigureOfEightMore(){
+  halt();
   moveForwards();
   halt();
   turn90Degrees();
@@ -84,9 +113,26 @@ void fourTimes(){
   halt();
   turn90DegreesMore();
   halt();
-  moveForwardsMore();
+  moveForwardsMoreMore();
   halt();
-  delay(100000000);
 }
+void turn270Degrees(){
+  //WILL TURN 270 DEGREES ANTICLOCKWISE
+  digitalWrite(ForwardsLeft, HIGH);
+  digitalWrite(ForwardsRight, LOW);
+  digitalWrite(EnableLeft, HIGH);
+  digitalWrite(EnableRight, HIGH);
+  digitalWrite(BackwardsLeft, LOW);
+  digitalWrite(BackwardsRight, HIGH);
+  delay(625);
+}
+
+void figureOfEight(){ 
+  //WILL CREATE A FIGURE OF EIGHT PATTERN WITH THE ROBOT
+  halfAFigureOfEight();
+  turn270Degrees();
+  halfAFigureOfEightMore();
+}
+ 
 void loop() {
-  }
+}
