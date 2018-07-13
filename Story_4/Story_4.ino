@@ -14,33 +14,29 @@ void setup() {
   pinMode(forward2, OUTPUT); 
   pinMode(enable2, OUTPUT); 
   pinMode(backwards2, OUTPUT);
+  
+  //This code will infinatly make the rover go forwards then stop every two second
+  forwards(); 
+  halt();
 }
-
-void loop()
-{
-  // loop() will happen forever. This loop() makes it go forwards for one second, stop, then go forwards for one second again.
-  // Go forward
+void forwards(){
+  //Go forwards
   digitalWrite(forward1,HIGH);
   digitalWrite(enable1,HIGH);
   digitalWrite(forward2,HIGH);
   digitalWrite(enable2,HIGH);
   delay(1000); // Wait for one second
+}
+
+void halt(){
   // Disable all motors
   digitalWrite(forward1,LOW);
   digitalWrite(enable1,LOW);
   digitalWrite(forward2,LOW);
   digitalWrite(enable2,LOW);
   delay(1000); // Wait for one second
-  // Go forward
-  digitalWrite(enable1,HIGH);
-  digitalWrite(backwards1,HIGH);
-  digitalWrite(enable2,HIGH);
-  digitalWrite(backwards2,HIGH);
-  delay(1000); // Wait for one second
-  // Disable all motors
-  digitalWrite(enable1,LOW);
-  digitalWrite(backwards1,LOW);
-  digitalWrite(enable2,LOW);
-  digitalWrite(backwards2,LOW);
-  delay(1000); // Wait for one second
+}
+
+void loop(){
+  // loop() will happen forever. 
 }

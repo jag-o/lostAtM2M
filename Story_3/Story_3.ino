@@ -1,35 +1,68 @@
 // These constant integers define the pins for later use of variables.
-const int enable = 9;
-const int forward = 8;
-const int backwards = 7;
 
-void setup()
-{
-  // setup() runs once. In this method, it defines the pins in pinMode().
-  pinMode(forward, OUTPUT); // Blue led represents the robot moving forwards.
-  pinMode(enable, OUTPUT); // Red led represents the robot turning on.
-  pinMode(backwards, OUTPUT); // Yellow led represents the robot moving backwards.
+const int enable = 9; //This line tells the arduino to use pin9without this line the rover will NOT move at all
+
+const int forward = 8; //This line tells the rover to use pin8 for the forwards motor, without this line the rover will NOT move forwards
+
+const int backwards = 7; //This line tells the arduino to use pin7 for the backwards motor, without this line the rover will NOT move backwards
+
+
+
+
+
+
+
+
+void setup(){
+//Void setup is where all the setting-up code is stored, like telling the arduino what the motors will do
+
+  pinMode(forward, OUTPUT);     //The forwards motor will OUTPUT a responce
+  
+  pinMode(enable, OUTPUT);      //THe enable motor will OUTPUT a responce
+  
+  pinMode(backwards, OUTPUT);   //The backwards motor wil OUTPUT a responce
 }
 
-void blink()
-{
-  // blink() is a method for representing how the motors work on the rover in terms of LEDs.
-  digitalWrite(forward,HIGH); // Enable forward LED
-  digitalWrite(enable,HIGH); // Enable enable lED
-  delay(10000); // Wait for 10 seconds.
-  digitalWrite(forward,LOW); // Disable forward LED
-  digitalWrite(enable,LOW); // Disable enable LED
-  delay(1000); // Wait for a second.
-  digitalWrite(enable,HIGH); // Enable enable LED
-  digitalWrite(backwards,HIGH); // Enable backwards LED
-  delay(1000);  // Wait for a second.
-  digitalWrite(enable,LOW); // Disable enable LED
-  digitalWrite(backwards,LOW); // Disable backwards LED
-  delay(1000); // Wait for a second.
+
+
+
+
+void blink(){
+//Void blink is a function that tells the motors to have a HIGH intensity for 1 second, then a LOW intensity for one second. This is repeated infinatly
+  
+  digitalWrite(forward,HIGH);   // Enable forward motor
+  
+  digitalWrite(enable,HIGH);    // Enable enable motor
+  
+  delay(1000);                  // Wait for 1 second.
+  
+  digitalWrite(forward,LOW);    // Disable forward motor
+  
+  digitalWrite(enable,LOW);     // Disable enable motor
+  
+  delay(1000);                  // Wait for 1 second.
+  
+  digitalWrite(enable,HIGH);    // Enable enable motor
+  
+  digitalWrite(backwards,HIGH); // Enable backwards motor
+  
+  delay(1000);                  // Wait for 1 second.
+  
+  digitalWrite(enable,LOW);     // Disable enable motor
+  
+  digitalWrite(backwards,LOW);  // Disable backwards motor 
+  
+  delay(1000);                  // Wait for 1 second.
+  
+                                //Delays are counted in miliseconds, therefore 1000 miliseconds = one second
 }
+
+
+
 
 void loop()
 {
-  // loop() will run forever. This loop() runs blink() forever.
-  blink(); // Run blink().
+  // loop() will run forever. This loop() runs blink() forever 
+  
+  blink(); // Run blink()
 }

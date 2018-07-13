@@ -11,10 +11,14 @@ void setup() {
     pinMode(ForwardsRight, OUTPUT); 
     pinMode(BackwardsRight, OUTPUT); 
     pinMode(EnableRight, OUTPUT);
-    figureOfEight();
+    forwardsEight();
+    BackwardsEight();
+}
+void loop(){ 
+
 }
 
-void moveForwards(){
+void moveForwards() {
   //MOVES THE ROVER FORAWRDS
   digitalWrite(ForwardsLeft, HIGH);
   digitalWrite(ForwardsRight, HIGH);
@@ -25,7 +29,7 @@ void moveForwards(){
   delay(1000);
 }
 
-void moveForwardsMore(){
+void moveForwardsMore() {
   //MOVES THE ROVER FORAWRDS
   digitalWrite(ForwardsLeft, HIGH);
   digitalWrite(ForwardsRight, HIGH);
@@ -37,7 +41,7 @@ void moveForwardsMore(){
   
 }
 
-void moveForwardsMoreMore(){
+void moveForwardsMoreMore() {
   //MOVES THE ROVER FORAWRDS
   digitalWrite(ForwardsLeft, HIGH);
   digitalWrite(ForwardsRight, HIGH);
@@ -45,10 +49,10 @@ void moveForwardsMoreMore(){
   digitalWrite(EnableRight, HIGH);
   digitalWrite(BackwardsLeft, LOW);
   digitalWrite(BackwardsRight, LOW);
-  delay(1650 );
+  delay(1650);
   
 }
-void halt(){ 
+void halt() { 
   //HALTS THE ROBOT
   digitalWrite(ForwardsLeft, LOW);
   digitalWrite(ForwardsRight, LOW);
@@ -56,10 +60,10 @@ void halt(){
   digitalWrite(EnableRight, LOW);
   digitalWrite(BackwardsLeft, LOW);
   digitalWrite(BackwardsRight, LOW);
-  delay(1500);
-  }
+  delay(750);
+}
 
-void turn90Degrees(){
+void turn90Degrees() {
   //TURNS THE ROVER 90 DEGREES ANTICLOCKWISE
   digitalWrite(ForwardsLeft, LOW);
   digitalWrite(ForwardsRight, HIGH);
@@ -67,10 +71,10 @@ void turn90Degrees(){
   digitalWrite(EnableRight, HIGH);
   digitalWrite(BackwardsLeft, HIGH);
   digitalWrite(BackwardsRight, LOW);
-  delay(530);
+  delay(610);
 }
 
-void turn90DegreesMore(){
+void turn90DegreesMore() {
   //TURNS THE ROVER MORE THAN 90 DEGREES ANTICLOCKWISE 
   digitalWrite(ForwardsLeft, LOW);
   digitalWrite(ForwardsRight, HIGH);
@@ -78,11 +82,59 @@ void turn90DegreesMore(){
   digitalWrite(EnableRight, HIGH);
   digitalWrite(BackwardsLeft, HIGH);
   digitalWrite(BackwardsRight, LOW);
-  delay(560);
+  delay(610);
 }
 
-void halfAFigureOfEight(){
+void moveBackwards() {
+  //MOVES THE ROVER BACKWARDS
+  digitalWrite(ForwardsLeft, LOW);
+  digitalWrite(ForwardsRight, LOW);
+  digitalWrite(EnableLeft, HIGH);
+  digitalWrite(EnableRight, HIGH);
+  digitalWrite(BackwardsLeft, HIGH);
+  digitalWrite(BackwardsRight, HIGH);
+  delay(1400);
+}
+
+void Bturn90Degrees() {
+  //TURNS THE ROVER MORE THAN 90 DEGREES ANTICLOCKWISE 
+  digitalWrite(ForwardsLeft, LOW);
+  digitalWrite(ForwardsRight, HIGH);
+  digitalWrite(EnableLeft, HIGH);
+  digitalWrite(EnableRight, HIGH);
+  digitalWrite(BackwardsLeft, HIGH);
+  digitalWrite(BackwardsRight, LOW);
+  delay(655);
+}
+
+void BackwardsHalfEight() {
+  //CREATES HALF A FIGURE OF EIGHT
   halt();
+  moveBackwards();
+  halt();
+  Bturn90Degrees();
+  halt();
+  moveBackwards();
+  halt();
+  Bturn90Degrees();
+  halt();
+  moveBackwards();
+  halt();
+  Bturn90Degrees();
+  halt();
+  moveBackwards();
+  halt();
+}
+
+void BackwardsEight(){
+  //MOVES THE ROVER BACKWARDS
+  BackwardsHalfEight();
+  turn270Degrees();
+  BackwardsHalfEight();
+}
+
+void halfAFigureOfEight() {
+  //CREATES HALF A FIGURE OF EIGHT
   moveForwards();
   halt();
   turn90Degrees();
@@ -99,7 +151,8 @@ void halfAFigureOfEight(){
   halt();
 }
 
-void halfAFigureOfEightMore(){
+void halfAFigureOfEightMore() {
+  //CREATES HALF A FIGURE OF EIGHT
   halt();
   moveForwards();
   halt();
@@ -116,7 +169,9 @@ void halfAFigureOfEightMore(){
   moveForwardsMoreMore();
   halt();
 }
-void turn270Degrees(){
+
+
+void turn270Degrees() {
   //WILL TURN 270 DEGREES ANTICLOCKWISE
   digitalWrite(ForwardsLeft, HIGH);
   digitalWrite(ForwardsRight, LOW);
@@ -124,15 +179,12 @@ void turn270Degrees(){
   digitalWrite(EnableRight, HIGH);
   digitalWrite(BackwardsLeft, LOW);
   digitalWrite(BackwardsRight, HIGH);
-  delay(625);
+  delay(670);
 }
 
-void figureOfEight(){ 
+void forwardsEight() { 
   //WILL CREATE A FIGURE OF EIGHT PATTERN WITH THE ROBOT
   halfAFigureOfEight();
   turn270Degrees();
   halfAFigureOfEightMore();
-}
- 
-void loop() {
 }
